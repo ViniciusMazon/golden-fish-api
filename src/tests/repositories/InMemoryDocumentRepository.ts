@@ -5,10 +5,10 @@ export class InMemoryDocumentRepository implements DocumentRepository {
     private static instance: InMemoryDocumentRepository;
     private documents = [];
 
-    private constructor() {}
+    private constructor() { }
 
     static getInstance() {
-        if(this.instance == null) {
+        if (this.instance == null) {
             this.instance = new InMemoryDocumentRepository();
         }
 
@@ -23,6 +23,13 @@ export class InMemoryDocumentRepository implements DocumentRepository {
         this.documents.push(document);
 
         console.log(this.documents);
+    }
+
+    update(document: DocumentDTO) {
+        const index = this.documents.indexOf(doc => doc.id === document.id);
+        if (!index) throw new Error("Document not found");
+        this.documents[index] = document;
+        console.log(this.documents[index]);
     }
 
 }
