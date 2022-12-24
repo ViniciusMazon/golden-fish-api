@@ -1,8 +1,9 @@
 import { Router } from "express";
+import { CreateDocumentMain } from "src/main/document/CreateDocumentMain";
 
 const routes = Router();
 
-routes.get('/', (req, res) => res.send('ok'));
+routes.post("/document", (request, response) => CreateDocumentMain.exec(request, response));
 
 export {
     routes
