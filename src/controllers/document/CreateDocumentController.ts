@@ -15,9 +15,7 @@ class CreateDocumentController implements Controller {
 
             const { title, content, ownerId, parentId } = request.body;
 
-            const document = new Document(
-                title, content, ownerId, parentId
-            );
+            const document = new Document(title, content, ownerId, parentId);
 
             await this.createDocumentUseCase.exec(document)
             return Presenter.SuccessCreated(response);

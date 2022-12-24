@@ -5,7 +5,7 @@ export interface DocumentDTO {
     content: string;
     ownerId: string;
     parentId: string;
-    id?: string | null;
+    id: string | null;
     createdAt?: Date | null;
     deletedAt?: Date | null
 }
@@ -16,11 +16,14 @@ export class Document {
         private readonly _content: string,
         private readonly _ownerId: string,
         private readonly _parentId: string | null,
-        private readonly _createdAt: Date = new Date(),
-        private readonly _id: string = randomUUID(),
+        private readonly _id?: string,
+        private readonly _createdAt?: Date,
         private readonly _deletedAt?: Date | null,
     ) {
         this.isTitleValid(_title);
+        this._id = _id ? _id : randomUUID();
+        this._createdAt = _createdAt ? _createdAt : new Date();
+        this._deletedAt = _deletedAt ? _deletedAt : null;
     }
 
     private isTitleValid(title: string) {

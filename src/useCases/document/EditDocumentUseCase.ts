@@ -14,8 +14,6 @@ export class EditDocumentUseCase implements UseCase {
             content: document.content,
             ownerId: document.ownerId,
             parentId: document.parentId,
-            createdAt: document.createdAt,
-            deletedAt: document.deletedAt
         });
     }
 

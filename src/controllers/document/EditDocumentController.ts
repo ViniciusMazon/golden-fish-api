@@ -13,13 +13,14 @@ export class EditDocumentController implements Controller {
         try {
             this.validate(request, response);
             const { documentId } = request.params;
-            const { title, content, ownerId, parentId, createdAt, deletedAt } = request.body;
+            const { title, content, ownerId, parentId} = request.body;
 
-            const document = new Document(title, content, ownerId, parentId, createdAt, documentId, deletedAt);
+            const document = new Document(title, content, ownerId, parentId, documentId);
 
             await this.editDocumentUseCase.exec(document);
             Presenter.SuccessNoContent(response);
         } catch (error) {
+            console.error(error);
             Presenter.InternalServerError(response);
         }
     }
@@ -30,8 +31,6 @@ export class EditDocumentController implements Controller {
         if (!body.content) Presenter.BadRequest(response, "content is required");
         if (!body.ownerId) Presenter.BadRequest(response, "ownerId is required");
         if (!body.parentId) Presenter.BadRequest(response, "parentId is required");
-        if (!body.createdAt) Presenter.BadRequest(response, "createdAt is required");
-        if (body.deletedAt !== null && typeof body.deletedAt !== "string") Presenter.BadRequest(response, "deletedAt is required");
 
         if (!request.params.documentId) Presenter.BadRequest(response, "Param documentId is required");
     }

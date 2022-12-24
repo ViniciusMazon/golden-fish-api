@@ -26,9 +26,17 @@ export class InMemoryDocumentRepository implements DocumentRepository {
     }
 
     update(document: DocumentDTO) {
-        const index = this.documents.indexOf(doc => doc.id === document.id);
-        if (!index) throw new Error("Document not found");
-        this.documents[index] = document;
+        const index = this.documents.findIndex(doc => doc.id === document.id);
+        const { createdAt, deletedAt } = this.documents[index];
+        this.documents[index] = {
+            id: document.id,
+            title: document.title,
+            content: document.content,
+            parentId: document.parentId,
+            ownerId: document.ownerId,
+            createdAt,
+            deletedAt
+        };
         console.log(this.documents[index]);
     }
 
