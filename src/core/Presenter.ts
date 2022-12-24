@@ -10,6 +10,15 @@ class Presenter {
         });
     }
 
+    static Success(response: Response, data): Response {
+        return response.status(200).json({
+            code: 200,
+            status: "success",
+            message: "Successfully",
+            data
+        })
+    }
+
     static SuccessNoContent(response: Response): Response {
         return response.status(204).json({
             code: 204,

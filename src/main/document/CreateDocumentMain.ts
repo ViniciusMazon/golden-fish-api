@@ -6,7 +6,7 @@ import { InMemoryDocumentRepository } from "src/tests/repositories/InMemoryDocum
 
 export class CreateDocumentMain implements Main {
     static exec(request: Request, response: Response) {
-        const useCase = CreateDocumentUseCase.factory(new InMemoryDocumentRepository());
+        const useCase = CreateDocumentUseCase.factory(InMemoryDocumentRepository.getInstance());
         const controller = CreateDocumentController.factory(useCase);
 
         return controller.handle(request, response);
