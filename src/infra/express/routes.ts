@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { CreateDirectoryMain } from "src/main/directory/CreateDirectoryMain";
+import { GetDirectoryMain } from "src/main/directory/GetDirectoryMain";
 import { CreateDocumentMain } from "src/main/document/CreateDocumentMain";
 import { EditDocumentMain } from "src/main/document/EditDocumentMain";
 import { GetDocumentMain } from "src/main/document/GetDocumentsMain";
@@ -12,6 +13,7 @@ routes.put("/document/:documentId", (request, response) => EditDocumentMain.exec
 
 
 routes.post("/directory", (request, response) => CreateDirectoryMain.exec(request, response));
+routes.get("/directory/:parentId", (request, response) => GetDirectoryMain.exec(request, response));
 
 export {
     routes

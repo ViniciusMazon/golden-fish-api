@@ -34,8 +34,8 @@ export class InMemoryDirectoryRepository implements DirectoryRepository {
         console.log(this.directories[index]);
     }
 
-    getByParentId(directory: DirectoryDTO): DirectoryDTO[] {
-        return this.directories.find(item => item.parentId === directory.parentId);
+    getByParentId(parentId: string): DirectoryDTO[] {
+        return this.directories.filter(item => item.parentId === parentId);
     }
 
 }
