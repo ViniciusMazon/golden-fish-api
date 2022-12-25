@@ -38,4 +38,7 @@ export class InMemoryDirectoryRepository implements DirectoryRepository {
         return this.directories.filter(item => item.parentId === parentId);
     }
 
+    delete(directoryId: string): void {
+        this.directories = this.directories.filter(item => item.id !== directoryId);
+    }
 }

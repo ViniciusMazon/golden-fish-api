@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { CreateDirectoryMain } from "src/main/directory/CreateDirectoryMain";
+import { DeleteDirectoryMain } from "src/main/directory/DeleteDirectoryMain";
 import { GetDirectoryMain } from "src/main/directory/GetDirectoryMain";
 import { CreateDocumentMain } from "src/main/document/CreateDocumentMain";
 import { DeleteDocumentMain } from "src/main/document/DeleteDocumentMain";
@@ -16,6 +17,7 @@ routes.delete("/document/:documentId", (request, response) => DeleteDocumentMain
 
 routes.post("/directory", (request, response) => CreateDirectoryMain.exec(request, response));
 routes.get("/directory/:parentId", (request, response) => GetDirectoryMain.exec(request, response));
+routes.delete("/directory/:directoryId", (request, response) => DeleteDirectoryMain.exec(request, response));
 
 export {
     routes
