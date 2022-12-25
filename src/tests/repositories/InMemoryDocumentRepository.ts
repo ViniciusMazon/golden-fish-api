@@ -40,4 +40,7 @@ export class InMemoryDocumentRepository implements DocumentRepository {
         console.log(this.documents[index]);
     }
 
+    delete(documentId: string): void {
+        this.documents = this.documents.filter(document => document.id !== documentId);
+    }
 }
