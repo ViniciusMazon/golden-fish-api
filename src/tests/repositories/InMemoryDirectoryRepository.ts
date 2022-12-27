@@ -16,7 +16,14 @@ export class InMemoryDirectoryRepository implements DirectoryRepository {
     }
 
     create(directory: DirectoryDTO): void {
-        this.directories.push(directory);
+        this.directories.push({
+            id: directory.id,
+            title: directory.title,
+            ownerId: directory.ownerId,
+            parentId: directory.parentId,
+            createdAt: directory.createdAt,
+            deletedAt: directory.deletedAt
+        });
         console.log(this.directories);
     }
 
@@ -35,6 +42,8 @@ export class InMemoryDirectoryRepository implements DirectoryRepository {
     }
 
     getByParentId(parentId: string): DirectoryDTO[] {
+        console.log(parentId)
+        console.log(this.directories)
         return this.directories.filter(item => item.parentId === parentId);
     }
 
