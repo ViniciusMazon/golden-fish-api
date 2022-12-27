@@ -16,7 +16,8 @@ export class InMemoryDocumentRepository implements DocumentRepository {
     }
 
     getByParentId(parentId: string): DocumentDTO[] | [] {
-        return this.documents.filter(doc => doc.parentId === parentId);
+        console.log(typeof parentId)
+        return this.documents.filter(doc => doc.parentId == parentId);
     }
 
     create(document: DocumentDTO): void {

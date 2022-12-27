@@ -15,7 +15,7 @@ export class Document {
         private readonly _title: string,
         private readonly _content: string,
         private readonly _ownerId: string,
-        private readonly _parentId: string | null,
+        private readonly _parentId: string,
         private readonly _id?: string,
         private readonly _createdAt?: Date,
         private readonly _deletedAt?: Date | null,
@@ -43,7 +43,7 @@ export class Document {
         return this._ownerId;
     }
 
-    public get parentId(): string | null {
+    public get parentId(): string {
         return this._parentId;
     }
 

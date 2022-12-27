@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 export interface DirectoryDTO {
     id: string;
     title: string;
-    parentId: string | null;
+    parentId: string;
     ownerId: string;
     createdAt: Date;
     deletedAt: Date | null;
@@ -34,7 +34,7 @@ export class Directory {
         return this._title;
     }
 
-    public get parentId(): string | null {
+    public get parentId(): string {
         return this._parentId;
     }
 
