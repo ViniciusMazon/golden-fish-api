@@ -27,6 +27,7 @@ export class CreateDirectoryController implements Controller {
         const { body } = request;
         if (!body.title) Presenter.BadRequest(response, "Title is required");
         if (!body.ownerId) Presenter.BadRequest(response, "OwnerId is required");
+        if (!body.parentId) Presenter.BadRequest(response, "ParentId is required");
     }
 
     static factory(createDirectoryUseCase: UseCase): Controller {
