@@ -27,6 +27,7 @@ export class Document {
     }
 
     private isTitleValid(title: string) {
+        if (title.length < 3) throw new Error("Title must be at least 3 characters");
         if (title.length > 120) throw new Error("Title must be at least 120 characters");
     }
 
