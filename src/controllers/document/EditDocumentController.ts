@@ -28,7 +28,6 @@ export class EditDocumentController implements Controller {
     private validate(request: Request, response: Response) {
         const { body } = request;
         if (!body.title) Presenter.BadRequest(response, "title is required");
-        if (!body.content) Presenter.BadRequest(response, "content is required");
         if (!body.ownerId) Presenter.BadRequest(response, "ownerId is required");
         if (!body.parentId) Presenter.BadRequest(response, "parentId is required");
 

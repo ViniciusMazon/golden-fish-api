@@ -28,7 +28,6 @@ class CreateDocumentController implements Controller {
         const { body } = request;
 
         if (!body.title) Presenter.BadRequest(response, "Title cannot be empty");
-        if (!body.content) Presenter.BadRequest(response, "Content cannot be empty");
         if (!body.ownerId) Presenter.BadRequest(response, "OwnerId cannot be empty");
         if (!body.parentId) Presenter.BadRequest(response, "ParentId is required");
     }
