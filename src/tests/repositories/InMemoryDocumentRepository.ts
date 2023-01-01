@@ -20,6 +20,12 @@ export class InMemoryDocumentRepository implements DocumentRepository {
         return this.documents.filter(doc => doc.parentId == parentId);
     }
 
+    getByTitle(title: string): DocumentDTO[] | [] {
+        const filtered = this.documents.filter(doc => doc.title.includes(title))
+        console.log(filtered);
+        return filtered;
+    }
+
     create(document: DocumentDTO): void {
         this.documents.push(document);
 
