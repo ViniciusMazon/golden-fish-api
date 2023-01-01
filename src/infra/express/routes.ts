@@ -8,6 +8,7 @@ import { DeleteDocumentMain } from "src/main/document/DeleteDocumentMain";
 import { EditDocumentMain } from "src/main/document/EditDocumentMain";
 import { GetDocumentMain } from "src/main/document/GetDocumentsMain";
 import { SearchDocumentMain } from "src/main/document/SearchDocumentMain";
+import { CreateSettingsMain } from "src/main/settings/CreateSettingsMain";
 
 const routes = Router();
 
@@ -23,6 +24,7 @@ routes.get("/directory/:parentId", (request, response) => GetDirectoryMain.exec(
 routes.put("/directory/:directoryId", (request, response) => EditDirectoryMain.exec(request, response));
 routes.delete("/directory/:directoryId", (request, response) => DeleteDirectoryMain.exec(request, response));
 
+routes.post("/settings", (request, response) => CreateSettingsMain.exec(request, response));
 
 export {
     routes
