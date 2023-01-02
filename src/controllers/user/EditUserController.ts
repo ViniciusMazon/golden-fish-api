@@ -1,12 +1,13 @@
 import { Controller } from "@core/Controller";
+import { Hash } from "@core/libs/Hash";
 import { Presenter } from "@core/Presenter";
 import { UseCase } from "@core/UseCase";
-import { Request, Response } from "express";
 import { User } from "@entities/User";
-import { Hash } from "@core/libs/Hash";
-export class CreateUserController implements Controller {
+import { Request, Response } from "express";
+
+export class EditUserController implements Controller {
     constructor(
-        private createUserUseCase: UseCase,
+        private editUserUseCase: UseCase,
         private hash: Hash
     ) { }
 
@@ -14,10 +15,14 @@ export class CreateUserController implements Controller {
         try {
             this.validate(request, response);
             const { username, password, email, avatarUrl } = request.body;
-            const user = new User(username, password, await this.hash.encrypt(password), email, avatarUrl);
+            const { userId } = request.params;
+            const user = new User(username, password, await this.hash.encrypt(password), email, avatarUrl, userId);
 
-            await this.createUserUseCase.exec(user);
-            Presenter.SuccessCreated(response);
+            const errors = await this.editUserUseCase.exec(user);
+            if (errors) {
+                Presenter.BadRequest(response, errors);
+            }
+            Presenter.SuccessNoContent(response);
         } catch (error) {
             console.error(error);
             Presenter.InternalServerError(response);
@@ -33,7 +38,7 @@ export class CreateUserController implements Controller {
         if (!body.avatarUrl) Presenter.BadRequest(response, "AvatarURL is required");
     }
 
-    static factory(createUserUseCase: UseCase, hash: Hash) {
-        return new CreateUserController(createUserUseCase, hash);
+    static factory(editUserUseCase: UseCase, hash: Hash) {
+        return new EditUserController(editUserUseCase, hash);
     }
 }

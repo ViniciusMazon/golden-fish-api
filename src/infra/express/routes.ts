@@ -12,6 +12,7 @@ import { CreateSettingsMain } from "src/main/settings/CreateSettingsMain";
 import { EditSettingsMain } from "src/main/settings/EditSettingsMain";
 import { GetSettingsMain } from "src/main/settings/GetSettingsMain";
 import { CreateUserMain } from "src/main/user/CreateUserMain";
+import { EditUserMain } from "src/main/user/EditUserMain";
 import { GetUserMain } from "src/main/user/GetUserMain";
 
 const routes = Router();
@@ -34,6 +35,7 @@ routes.put("/settings/:settingsId", (request, response) => EditSettingsMain.exec
 
 routes.get("/user/:userId", (request, response) => GetUserMain.exec(request, response));
 routes.post("/user", (request, response) => CreateUserMain.exec(request, response));
+routes.put("/user/:userId", (request, response) => EditUserMain.exec(request, response));
 
 export {
     routes

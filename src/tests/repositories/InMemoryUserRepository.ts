@@ -6,7 +6,6 @@ export class InMemoryUserRepository implements UserRepository {
     private users: UserDTO[] = [];
 
     private constructor() { }
-
     static getInstance() {
         if (this.instance == null) {
             this.instance = new InMemoryUserRepository();
@@ -15,11 +14,23 @@ export class InMemoryUserRepository implements UserRepository {
         return this.instance;
     }
 
+    update(user: UserDTO): void {
+        const index = this.users.findIndex(item => item.id === user.id);
+        this.users[index] = {
+            id: user.id,
+            username: user.username,
+            password: user.hashPassword,
+            email: user.email,
+            avatarUrl: user.avatarUrl
+        }
+        console.log(this.users[index]);
+    }
+
     create(user: UserDTO): void {
         const newUser = {
             id: user.id,
             username: user.username,
-            password: user.password,
+            password: user.hashPassword,
             email: user.email,
             avatarUrl: user.avatarUrl
         }
