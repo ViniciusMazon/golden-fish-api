@@ -7,6 +7,22 @@ export class InMemorySettingsRepository implements SettingsRepository {
 
     private constructor() { }
 
+    update(settings: SettingsDTO): void {
+        const index = this.settingsInMemory.findIndex(item => item.id === settings.id);
+        this.settingsInMemory[index] = {
+            id: settings.id,
+            userId: settings.userId,
+            initialScreen: settings.initialScreen,
+            editorTheme: settings.editorTheme,
+            isLineNumber: settings.isLineNumber,
+            editorFontSize: settings.editorFontSize,
+            previewFontSize: settings.previewFontSize,
+            isPreview: settings.isPreview,
+            isAutoClean: settings.isAutoClean
+        }
+        console.log(this.settingsInMemory[index]);
+    }
+
     static getInstance() {
         if (this.intance == null) {
             this.intance = new InMemorySettingsRepository();

@@ -1,6 +1,7 @@
 import { SettingsDTO } from "@entities/Settings";
 
 export abstract class SettingsRepository {
-    abstract create(settings: SettingsDTO): void
-    abstract getByUserId(userId: string): SettingsDTO[] 
+    abstract create(settings: SettingsDTO): void;
+    abstract getByUserId(userId: string): SettingsDTO[];
+    abstract update(settings: SettingsDTO): void;
 }

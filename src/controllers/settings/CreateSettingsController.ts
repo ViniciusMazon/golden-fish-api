@@ -42,7 +42,6 @@ export class CreateSettingsController implements Controller {
     private validate(request, response) {
         const { body } = request;
         if (!body.userId) Presenter.BadRequest(response, "UserId is required")
-        if (!body.isLineNumber) Presenter.BadRequest(response, "IsLineNumber is required")
         if (!body.editorFontSize) Presenter.BadRequest(response, "EditorFontSize is required")
         if (!body.previewFontSize) Presenter.BadRequest(response, "PreviewFontSize is required")
     }
