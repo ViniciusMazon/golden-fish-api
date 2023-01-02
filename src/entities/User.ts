@@ -1,5 +1,13 @@
 import { randomUUID } from "node:crypto";
 
+export interface UserDTO {
+    username: string;
+    password: string;
+    email: string;
+    avatarUrl: string;
+    id?: string;
+}
+
 export class User {
     constructor(
         private readonly _username: string,
@@ -21,6 +29,10 @@ export class User {
 
     public get avatarUrl(): string {
         return this._avatarUrl;
+    }
+
+    public get password(): string {
+        return this._password;
     }
 
     public get id(): string {

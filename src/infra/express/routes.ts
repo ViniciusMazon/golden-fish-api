@@ -10,6 +10,8 @@ import { GetDocumentMain } from "src/main/document/GetDocumentsMain";
 import { SearchDocumentMain } from "src/main/document/SearchDocumentMain";
 import { CreateSettingsMain } from "src/main/settings/CreateSettingsMain";
 import { GetSettingsMain } from "src/main/settings/GetSettingsMain";
+import { CreateUserMain } from "src/main/user/CreateUserMain";
+import { GetUserMain } from "src/main/user/GetUserMain";
 
 const routes = Router();
 
@@ -27,6 +29,9 @@ routes.delete("/directory/:directoryId", (request, response) => DeleteDirectoryM
 
 routes.post("/settings", (request, response) => CreateSettingsMain.exec(request, response));
 routes.get("/settings/:userId", (request, response) => GetSettingsMain.exec(request, response));
+
+routes.get("/user/:userId", (request, response) => GetUserMain.exec(request, response));
+routes.post("/user", (request, response) => CreateUserMain.exec(request, response));
 
 export {
     routes
