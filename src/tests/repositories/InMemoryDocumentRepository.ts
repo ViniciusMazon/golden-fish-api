@@ -42,12 +42,17 @@ export class InMemoryDocumentRepository implements DocumentRepository {
             parentId: document.parentId,
             ownerId: document.ownerId,
             createdAt,
-            deletedAt
+            deletedAt: document.deletedAt ? document.deletedAt : deletedAt
         };
         console.log(this.documents[index]);
     }
 
     delete(documentId: string): void {
-        this.documents = this.documents.filter(document => document.id !== documentId);
+        const index = this.documents.findIndex(doc => doc.id === documentId);
+        this.documents[index] = {
+            ...this.documents[index],
+            deletedAt: new Date()
+        }
+        console.log(this.documents[index])
     }
 }
